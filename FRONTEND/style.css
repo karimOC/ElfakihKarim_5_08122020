@@ -1,0 +1,51 @@
+.navbar{
+    background-color: rgb(240, 240, 240);
+}
+.navbar-brand {
+    color: black;
+}
+.navbar-brand:hover {
+    color: black;
+}
+.navbar-nav li a {
+    color: black;
+}
+.navbar-nav li a:hover {
+    color: rgb(235, 152, 0);
+}
+.navbar-toggler-icon {
+    color: black;
+}
+.imgProduit {
+    width: 120px;
+    height: 80px;
+}
+.descrProduit {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    /* align-items: center; */
+    height: 80px;
+    font-size: 12px;
+    line-height: 12px;
+}
+.voirProduit {
+    height: 80px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.voirProduit input{
+    border: none;
+    box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.603);
+
+}
+.col-3, .col-6 {
+    padding: 15px;
+    background-color: rgb(235, 152, 0);
+}
+.col-6 p {
+    background-color: white;
+    padding: 2px;
+}
