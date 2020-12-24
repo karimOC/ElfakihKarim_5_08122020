@@ -1,6 +1,6 @@
 .titreSite {
     font-family: 'Old Standard TT', serif;
-    font-size: 30px;
+    font-size: 0px;
 }
 .navbar {
     background-color: rgb(240, 240, 240);
@@ -15,24 +15,23 @@
     color: black;
 }
 .modeleProduit {
-    padding: 15px 0px 0px 15px;
+    padding: 15px 0px 15px 15px;
     border-top: 1px solid black;
 }
 .imgProduit{
-    width: 30%;
-    height: 30%;
+    width: 20%;
+    height: 20%;
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.164);
-    margin-right: 10px;
 }
 .produitDescr {
     display: flex;
     align-items: center;
     align-content: center;
     font-size: 12px;
-    padding: 15px 0px 0px 0px;
+    padding: 0px 0px 0px 15px;
 }
 footer {
-    margin-top: 25px;
+    margin-top: 45px;
     font-size: 13px;
 }
 footer a {
