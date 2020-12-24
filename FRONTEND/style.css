@@ -4,13 +4,7 @@
 .navbar-brand {
     color: black;
 }
-.navbar-brand:hover {
-    color: black;
-}
-.navbar-nav li a {
-    color: black;
-}
-.navbar-nav li a:hover {
+.nav-link svg:hover {
     color: rgb(235, 152, 0);
 }
 .navbar-toggler-icon {
@@ -18,12 +12,13 @@
 }
 .modeleProduit {
     padding: 15px 0px 0px 15px;
-    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 .imgProduit{
     width: 30%;
     height: 30%;
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.164);
+    margin-right: 10px;
 }
 .produitDescr {
     display: flex;
@@ -32,4 +27,15 @@
     font-size: 12px;
     padding: 15px 0px 0px 0px;
 }
-
+footer {
+    margin-top: 25px;
+    font-size: 13px;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+footer a:hover {
+    color: rgb(235, 152, 0);
+}
