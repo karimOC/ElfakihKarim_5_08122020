@@ -1,3 +1,7 @@
+.titreSite {
+    font-family: 'Old Standard TT', serif;
+    font-size: 30px;
+}
 .navbar {
     background-color: rgb(240, 240, 240);
 }
