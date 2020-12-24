@@ -16,36 +16,20 @@
 .navbar-toggler-icon {
     color: black;
 }
-.imgProduit {
-    width: 120px;
-    height: 80px;
+.modeleProduit {
+    padding: 15px 0px 0px 15px;
+    border-bottom: 1px solid black;
 }
-.descrProduit {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    /* align-items: center; */
-    height: 80px;
-    font-size: 12px;
-    line-height: 12px;
+.imgProduit{
+    width: 30%;
+    height: 30%;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.164);
 }
-.voirProduit {
-    height: 80px;
+.produitDescr {
     display: flex;
-    align-content: center;
     align-items: center;
+    align-content: center;
     font-size: 12px;
+    padding: 15px 0px 0px 0px;
 }
-.voirProduit input{
-    border: none;
-    box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.603);
 
-}
-.col-3, .col-6 {
-    padding: 15px;
-    background-color: rgb(235, 152, 0);
-}
-.col-6 p {
-    background-color: white;
-    padding: 2px;
-}
