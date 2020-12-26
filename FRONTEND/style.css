@@ -1,6 +1,9 @@
 .titreSite {
-    font-family: 'Old Standard TT', serif;
-    font-size: 25px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 13px;
+    /* position: absolute;
+    left: 130px;
+    top: 38px; */
 }
 .navbar {
     background-color: rgb(240, 240, 240);
