@@ -31,7 +31,6 @@
     align-items: center;
     align-content: center;
     font-size: 12px;
-    padding: 0px 0px 0px 15px;
 }
 footer {
     margin-top: 45px;
@@ -45,3 +44,10 @@ footer a {
 footer a:hover {
     color: rgb(235, 152, 0);
 }
+
+
+@media (min-width: 380px) {
+    .produitDescr {
+        padding-left: 15px;
+    }
+  }
