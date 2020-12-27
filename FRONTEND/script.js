@@ -18,18 +18,16 @@
 
 // Caution: when using fetch from your terminal, you need to use an external package like 'node-fetch'
 function remplirListeProduits(cameras) {
-    // loop here to display nounourses names
-    for (let elem of cameras) {
-      console.log(elem.name)
-    }
+  // loop here to display nounourses names
+  for (let elem of cameras) {
+    console.log(elem.name);
   }
-  
+}
 
-  
-  async function fillProducts() {
-    await fetch('http://localhost:3000/api/cameras') // will return info, but in wrong format
-      .then((response) => response.json()) // will return info, in json format
-      .then((cameras) => remplirListeProduits(cameras)) // main code here, using json info
-  }
-  
-  fillProducts()
+async function fillProducts() {
+  await fetch("http://localhost:3000/api/cameras") // will return info, but in wrong format
+    .then((response) => response.json()) // will return info, in json format
+    .then((cameras) => remplirListeProduits(cameras)); // main code here, using json info
+}
+
+fillProducts();
