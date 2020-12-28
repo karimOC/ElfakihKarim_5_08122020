@@ -1,0 +1,42 @@
+.titreSite {
+  font-family: "Dancing Script", cursive;
+  font-size: 13px;
+}
+nav {
+  .navbar {
+    background-color: rgb(240, 240, 240);
+  }
+  .navbar-brand {
+    color: black;
+  }
+  .nav-link svg:hover {
+    color: rgb(235, 152, 0);
+  }
+  .navbar-toggler-icon {
+    color: black;
+  }
+}
+#lesProduits {
+  .modeleProduit {
+    padding: 15px 0px 15px 15px;
+    border-top: 1px solid black;
+  }
+}
+footer {
+  margin-top: 45px;
+  font-size: 13px;
+  a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  a:hover {
+    color: rgb(235, 152, 0);
+  }
+}
+
+@media (min-width: 380px) {
+  .produitDescr {
+    padding-left: 15px;
+  }
+}

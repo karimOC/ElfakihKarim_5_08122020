@@ -2,28 +2,25 @@
   font-family: "Dancing Script", cursive;
   font-size: 13px;
 }
-.navbar {
-  background-color: rgb(240, 240, 240);
+
+nav .navbar {
+  background-color: #f0f0f0;
 }
-.navbar-brand {
+nav .navbar-brand {
   color: black;
 }
-.nav-link svg:hover {
-  color: rgb(235, 152, 0);
+nav .nav-link svg:hover {
+  color: #eb9800;
 }
-.navbar-toggler-icon {
+nav .navbar-toggler-icon {
   color: black;
 }
-.modeleProduit {
+
+#lesProduits .modeleProduit {
   padding: 15px 0px 15px 15px;
   border-top: 1px solid black;
 }
-.produitDescr {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  font-size: 12px;
-}
+
 footer {
   margin-top: 45px;
   font-size: 13px;
@@ -34,7 +31,7 @@ footer a {
   margin-right: 15px;
 }
 footer a:hover {
-  color: rgb(235, 152, 0);
+  color: #eb9800;
 }
 
 @media (min-width: 380px) {
@@ -42,3 +39,5 @@ footer a:hover {
     padding-left: 15px;
   }
 }
+
+/*# sourceMappingURL=style.css.map */
