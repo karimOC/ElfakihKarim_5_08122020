@@ -16,10 +16,15 @@ nav {
     color: black;
   }
 }
-#lesProduits {
-  .modeleProduit {
-    padding: 15px 0px 15px 15px;
-    border-top: 1px solid black;
+#listCameras {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#camera-card {
+    margin: 10px;
+  img {
+    height: 180px;
   }
 }
 footer {
@@ -36,7 +41,5 @@ footer {
 }
 
 @media (min-width: 380px) {
-  .produitDescr {
-    padding-left: 15px;
-  }
+
 }

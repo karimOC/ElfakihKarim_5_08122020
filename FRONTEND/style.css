@@ -16,9 +16,17 @@ nav .navbar-toggler-icon {
   color: black;
 }
 
-#lesProduits .modeleProduit {
-  padding: 15px 0px 15px 15px;
-  border-top: 1px solid black;
+#listCameras {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#camera-card {
+  margin: 10px;
+}
+#camera-card img {
+  height: 180px;
 }
 
 footer {
@@ -32,12 +40,6 @@ footer a {
 }
 footer a:hover {
   color: #eb9800;
-}
-
-@media (min-width: 380px) {
-  .produitDescr {
-    padding-left: 15px;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */
