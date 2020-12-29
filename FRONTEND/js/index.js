@@ -1,9 +1,9 @@
-
+//Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras") // Renverra des informations, mais dans un format incorrect
   .then(response => response.json())
-  .then((nounours) => homeCameras(nounours))
-  .catch(error => alert(error));
+  .then((cameras) => homeCameras(cameras))
+  .catch(error => console.log(error));
   }
 fillProducts();
 
