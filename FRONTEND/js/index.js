@@ -1,8 +1,8 @@
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras") // Renverra des informations, mais dans un format incorrect
-  .then(response => response.json())
-  .then((cameras) => homeCameras(cameras))
+  .then(response => response.json()) //Renvoi la reponse en Json
+  .then((cameras) => homeCameras(cameras)) //Appel fonction
   .catch(error => console.log(error));
   }
 fillProducts();
@@ -19,7 +19,7 @@ function homeCameras(array) {
           <h4 class="card-title">${elem.name}</h4>
           <p class="card-text">${elem.description}</p>
           <a href="produit.html?id=${elem._id}">
-              <button type="button" id="camera-infos" class="add-to-cart  btn btn-dark btn-md">Plus d'informations</button>
+              <button type="button" id="camera-infos" class="add-to-cart btn btn-dark btn-md">Plus d'informations</button>
           </a>
       </div>
   </div>`;
