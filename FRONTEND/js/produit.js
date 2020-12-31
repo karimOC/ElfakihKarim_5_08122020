@@ -26,7 +26,7 @@ function idCamera(object) {
     <div class="card-body">
         <h4 class="card-title">${object.name}</h4>
         <p class="card-text">${object.description}</p>
-        <select class="custom-select col-sm-4 col-12" id="listLenses">
+        <select class="custom-select col-8" id="listLenses">
         </select>
         <strong><p class="card-text mt-3">Prix: ${
           object.price / 100
