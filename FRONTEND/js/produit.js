@@ -12,15 +12,13 @@ async function fillProducts() {
 }
 fillProducts();
 
-//Fonction pour afficher la liste de toutes les caméras disponible
+//Fonction pour afficher la caméra séléctionné
 function idCamera(object) {
   let idChoisie = document.querySelector("#choixCameras");
   idChoisie.innerHTML += `<div id="camera-card" class="card" style="width: 18em;">
-    <a href="produit.html?id=${object._id}">
     <img src="${
       object.imageUrl
     }" class="card-img-top" alt="image de la caméra ${object.name}">
-    </a>
     <div class="card-body">
         <h4 class="card-title">${object.name}</h4>
         <p class="card-text">${object.description}</p>
@@ -29,12 +27,13 @@ function idCamera(object) {
         <strong><p class="card-text mt-3">Prix: ${
           object.price / 100
         } €</p></strong>
-        <a href="produit.html?id=${object._id}">
-        <button type="button"  onclick="addToBasket()" id="camera-buy" class="add-to-products btn btn-warning mt-3">Ajouter au panier</button>
+        <a href="panier.html?id=${object._id}">
+        <button type="button"  onclick="addToBasket()" class=" btn btn-warning mt-3">Ajouter au panier</button>
         </a>
     </div>
 </div>`;
   for (elem of object.lenses) {
+    console.log(elem)
     let emplacementSelect = document.getElementById("listLenses");
     let option = document.createElement("option");
     option.text = elem;

@@ -19,7 +19,7 @@ function homeCameras(array) {
           <h4 class="card-title">${elem.name}</h4>
           <p class="card-text">${elem.description}</p>
           <a href="produit.html?id=${elem._id}">
-              <button type="button" id="camera-infos" class="add-to-cart btn btn-dark btn-md">Plus d'informations</button>
+              <button type="button" class=" btn btn-dark btn-md">Plus d'informations</button>
           </a>
       </div>
   </div>`;
