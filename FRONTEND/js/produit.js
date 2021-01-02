@@ -2,7 +2,6 @@
 const queryString = window.location.search; //recupere ladresse entiere
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get("id"); //recupere l'id
-console.log(product);
 
 //Appel de l'API
 async function fillProducts() {
@@ -15,7 +14,6 @@ fillProducts();
 
 //Fonction pour afficher la liste de toutes les caméras disponible
 function idCamera(object) {
-  console.log(object);
   let idChoisie = document.querySelector("#choixCameras");
   idChoisie.innerHTML += `<div id="camera-card" class="card" style="width: 18em;">
     <a href="produit.html?id=${object._id}">
