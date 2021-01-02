@@ -24,15 +24,12 @@ function panierCameras(object) {
                 </div>
                 <div class="col-6">
                     <p class="card-text">${object.name}<br>
-                    <select id="quantitéCAm" class="custom-select col-8">
-                    <option value="1">Qté</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select>
+                    <button onclick="qtyMoins()" type="button" class="btnQty border" style="background-color: white;">-</button>
+                    <input type="text" class="form-control" value="1">
+                    <button onclick="qtyPlus()" type="button" class="btnQty border" style="background-color: white;">+</button>
+                    </p>
                 </div>
-                <div id="prixCamera" class="col-3 d-flex justify-content-end">
-                    
+                <div id="prixCamera" class="col-3 d-flex justify-content-end">                   
                 </div>
             </div>
         </div>
@@ -45,12 +42,12 @@ function panierCameras(object) {
             </div>
         </div>
         `
-        for (elem of object.lenses) {
-            console.log(elem)
-            let paragraphe = document.querySelector("#prixCamera");
-            paragraphe.innerHTML += `
-            <p>${object.lenses} €
-            </p>
-            `
-          }
+        // for (elem of object.lenses) {
+        //     console.log(elem)
+        //     let paragraphe = document.querySelector("#prixCamera");
+        //     paragraphe.innerHTML += `
+        //     <p>${object.lenses} €
+        //     </p>
+        //     `
+        //   }
   }
