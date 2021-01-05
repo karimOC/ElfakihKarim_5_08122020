@@ -27,16 +27,21 @@ function idCamera(object) {
         <strong><p class="card-text mt-3">Prix: ${
           object.price / 100
         } €</p></strong>
-        <a href="panier.html?id=${object._id}">
-        <button type="button"  onclick="addToBasket()" class=" btn btn-warning mt-3">Ajouter au panier</button>
+        <a id="lienHttp">
+        <button type="button" class=" btn btn-warning mt-3">Ajouter au panier</button>
         </a>
     </div>
 </div>`;
   for (elem of object.lenses) {
-    console.log(elem)
     let emplacementSelect = document.getElementById("listLenses");
     let option = document.createElement("option");
     option.text = elem;
     emplacementSelect.add(option);
+    console.log(option)
   }
+  let emplacementHttp = document.getElementById("lienHttp");
+    emplacementHttp.href = "panier.html?id=" + object._id
+    console.log(emplacementHttp)
 }
+
+{/* <a id="" href="panier.html?id=${object._id}"> */}

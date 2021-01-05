@@ -2,7 +2,7 @@
 const queryString = window.location.search; //recupere ladresse entiere
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get("id"); //recupere l'id
-
+console.log(product)
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras/" + product) // Renverra des informations, mais dans un format incorrect
@@ -26,7 +26,8 @@ function panierCameras(object) {
   }">
                 </div>
                 <div class="col-6">
-                    <p class="card-text">${object.name}</p>
+                    <p class="card-text">${object.name}<br>
+                    ${object.lenses}</p>
                     <div class="input-group">
                         <label>Quantité: 
                             <select id="quantity" onchange="addToPrice()">
@@ -50,22 +51,21 @@ function panierCameras(object) {
             </div>
         </div>
         `;
-        let emplacementPrix = document.getElementById("prixCamera")
-        emplacementPrix.innerHTML = '<small>' + object.price/100 + '€ </small>'
-        
-        function addToPrice() {
-            // let quantité = document.getElementById("quantity")
-            // qty = quantité.value
+  let emplacementPrix = document.getElementById("prixCamera");
+  emplacementPrix.innerHTML = "<small>" + object.price / 100 + "€ </small>";
 
-            // if (qty === 2) {
-                // emplacementPrix.innerHTML = '<small>' + object.price*2/100 + '€ </small>'
-                // else if (qty === 3) {
-                //     emplacementPrix.innerHTML = '<small>' + object.price*3/100 + '€ </small>'
-                // }
-                // else 
-                //     emplacementPrix.innerHTML = '<small>' + object.price/100 + '€ </small>' 
-            // }
-            // console.log(qty)
-        }
-        addToPrice()
+  function addToPrice() {
+    // let quantité = document.getElementById("quantity")
+    // qty = quantité.value
+    // if (qty === 2) {
+    // emplacementPrix.innerHTML = '<small>' + object.price*2/100 + '€ </small>'
+    // else if (qty === 3) {
+    //     emplacementPrix.innerHTML = '<small>' + object.price*3/100 + '€ </small>'
+    // }
+    // else
+    //     emplacementPrix.innerHTML = '<small>' + object.price/100 + '€ </small>'
+    // }
+    // console.log(qty)
+  }
+  addToPrice();
 }
