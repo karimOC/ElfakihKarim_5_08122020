@@ -17,19 +17,24 @@ fillProducts();
 
 //Fonction pour afficher dans le panier la caméra choisie
 function panierCameras(object) {
+  let img = object.imageUrl;
+  let name = object.name;
+  let price = object.price;
+  localStorage.setItem("name", JSON.stringify(name));
+  localStorage.setItem("image", JSON.stringify(img));
+  localStorage.setItem("prix", JSON.stringify(price));
+  localStorage.setItem("lense", JSON.stringify(lense));
   let shopCamera = document.querySelector("#monPanier");
   shopCamera.innerHTML += `
         <div id="lignePanier" class="container border-bottom">
             <div class="row mb-2">
                 <div class="col-3">
-                    <img src="${
-                      object.imageUrl
-                    }" class="img-fluid" alt="image de la caméra ${
+                    <img src="${img}" class="img-fluid" alt="image de la caméra ${
     object.name
   }">
                 </div>
                 <div class="col-6">
-                    <p class="card-text">${object.name}<br>
+                    <p class="card-text">${name}<br>
                     ${lense}</p>
                     <div class="input-group">
                         <label>Quantité: 
@@ -64,5 +69,10 @@ function panierCameras(object) {
       "<small>" + (x.value * object.price) / 100 + "€ </small>";
   }
   addToPrice();
-//   localStorage.clear();
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    // console.log(key, localStorage.getItem(key));
+  }
 }
+localStorage.clear();
+// console.log(monStorage)

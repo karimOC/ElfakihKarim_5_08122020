@@ -15,6 +15,7 @@ fillProducts();
 //Fonction pour afficher la caméra séléctionné
 function idCamera(object) {
   let idChoisie = document.querySelector("#choixCameras");
+  // ON créé le HTML de la caméra sélectionné dans la page Produit.html
   idChoisie.innerHTML += `<div id="camera-card" class="card" style="width: 18em;">
     <img src="${
       object.imageUrl
@@ -33,20 +34,19 @@ function idCamera(object) {
         </a>
     </div>
 </div>`;
-
+  // On affiche ici les lentilles dans le <select> en fonction de la caméra choisie
   for (elem of object.lenses) {
     let option = document.createElement("option");
     let emplacementSelect = document.getElementById("listLenses");
     option.text = elem;
     option.value = elem;
-    // console.log(option.value); 
     emplacementSelect.add(option);
   }
 
   document
     .getElementById("listLenses")
     .addEventListener("change", getSelectValue);
-
+  // Cette fonction permet de rajouter à l'Url notre lentille sélectionné
   function getSelectValue() {
     var x = document.getElementById("listLenses");
     let emplacementHttp = document.getElementById("lienHttp");
