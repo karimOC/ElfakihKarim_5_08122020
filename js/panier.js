@@ -2,7 +2,9 @@
 const queryString = window.location.search; //recupere ladresse entiere
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get("id"); //recupere l'id
+const lense = urlParams.get("lenses"); //recupere la lentille
 console.log(product)
+console.log(lense)
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras/" + product) // Renverra des informations, mais dans un format incorrect
@@ -27,7 +29,7 @@ function panierCameras(object) {
                 </div>
                 <div class="col-6">
                     <p class="card-text">${object.name}<br>
-                    ${object.lenses}</p>
+                    ${lense}</p>
                     <div class="input-group">
                         <label>Quantité: 
                             <select id="quantity" onchange="addToPrice()">
