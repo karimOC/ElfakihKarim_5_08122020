@@ -32,6 +32,8 @@ function panierCameras(object) {
                     <img src="${img}" class="img-fluid" alt="image de la caméra ${
     object.name
   }">
+  <button type="button" class=" btn btn-danger mt-3">x</button>
+
                 </div>
                 <div class="col-6">
                     <p class="card-text">${name}<br>
@@ -67,6 +69,11 @@ function panierCameras(object) {
     let emplacementPrix = document.getElementById("prixCamera");
     emplacementPrix.innerHTML =
       "<small>" + (x.value * object.price) / 100 + "€ </small>";
+    let emplacementSupp = document.getElementById("prixCamera");
+    // btnSupp = document.createElement('button')
+    // btnSupp.type = "button"
+    // btnSupp.className = "btn btn-danger"
+    // emplacementSupp.appendChild(btnSupp)
   }
   addToPrice();
   for (let i = 0; i < localStorage.length; i++) {
