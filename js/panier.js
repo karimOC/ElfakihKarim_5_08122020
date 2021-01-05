@@ -60,15 +60,9 @@ function panierCameras(object) {
   function addToPrice() {
     var x = document.getElementById("quantity");
     let emplacementPrix = document.getElementById("prixCamera");
-    emplacementPrix.innerHTML = "<small>" + object.price / 100 + "€ </small>";
-    if (x.value == 2){
-        emplacementPrix.innerHTML = "<small>" + object.price*2 / 100 + "€ </small>";
-    }
-    if (x.value == 3){
-        emplacementPrix.innerHTML = "<small>" + object.price*3 / 100 + "€ </small>";
-    }
-    console.log(x.value);
-    console.log(emplacementPrix);
+    emplacementPrix.innerHTML =
+      "<small>" + (x.value * object.price) / 100 + "€ </small>";
   }
   addToPrice();
+//   localStorage.clear();
 }
