@@ -3,8 +3,9 @@ const queryString = window.location.search; //recupere ladresse entiere
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get("id"); //recupere l'id
 const lense = urlParams.get("lenses"); //recupere la lentille
-console.log(product)
-console.log(lense)
+// console.log(product)
+// console.log(lense)
+
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras/" + product) // Renverra des informations, mais dans un format incorrect
@@ -32,7 +33,7 @@ function panierCameras(object) {
                     ${lense}</p>
                     <div class="input-group">
                         <label>Quantité: 
-                            <select id="quantity" onchange="addToPrice()">
+                            <select id="quantity"">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -53,21 +54,21 @@ function panierCameras(object) {
             </div>
         </div>
         `;
-  let emplacementPrix = document.getElementById("prixCamera");
-  emplacementPrix.innerHTML = "<small>" + object.price / 100 + "€ </small>";
+
+  document.getElementById("quantity").addEventListener("change", addToPrice);
 
   function addToPrice() {
-    // let quantité = document.getElementById("quantity")
-    // qty = quantité.value
-    // if (qty === 2) {
-    // emplacementPrix.innerHTML = '<small>' + object.price*2/100 + '€ </small>'
-    // else if (qty === 3) {
-    //     emplacementPrix.innerHTML = '<small>' + object.price*3/100 + '€ </small>'
-    // }
-    // else
-    //     emplacementPrix.innerHTML = '<small>' + object.price/100 + '€ </small>'
-    // }
-    // console.log(qty)
+    var x = document.getElementById("quantity");
+    let emplacementPrix = document.getElementById("prixCamera");
+    emplacementPrix.innerHTML = "<small>" + object.price / 100 + "€ </small>";
+    if (x.value == 2){
+        emplacementPrix.innerHTML = "<small>" + object.price*2 / 100 + "€ </small>";
+    }
+    if (x.value == 3){
+        emplacementPrix.innerHTML = "<small>" + object.price*3 / 100 + "€ </small>";
+    }
+    console.log(x.value);
+    console.log(emplacementPrix);
   }
   addToPrice();
 }

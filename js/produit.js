@@ -22,7 +22,7 @@ function idCamera(object) {
     <div class="card-body">
         <h4 class="card-title">${object.name}</h4>
         <p class="card-text">${object.description}</p>
-        <select id="listLenses" onchange="getSelectValue()" class="custom-select col-8">
+        <select id="listLenses" class="custom-select col-8">
         </select>
         <div id="test"></div>
         <strong><p class="card-text mt-3">Prix: ${
@@ -38,25 +38,21 @@ function idCamera(object) {
     let option = document.createElement("option");
     let emplacementSelect = document.getElementById("listLenses");
     option.text = elem;
-    option.value = elem
-    console.log(option.value)
+    option.value = elem;
+    // console.log(option.value); 
     emplacementSelect.add(option);
   }
 
-  document.getElementById("listLenses").addEventListener("change", getSelectValue)
+  document
+    .getElementById("listLenses")
+    .addEventListener("change", getSelectValue);
 
   function getSelectValue() {
     var x = document.getElementById("listLenses");
     let emplacementHttp = document.getElementById("lienHttp");
-    emplacementHttp.href = "panier.html?id=" + object._id + "&lenses=" + x.value;
-    // document.getElementById("test").innerHTML = "You selected: " + x.value;
-  console.log(emplacementHttp);
+    emplacementHttp.href =
+      "panier.html?id=" + object._id + "&lenses=" + x.value;
+    // console.log(emplacementHttp);
   }
-  getSelectValue()
-
-  // let emplacementHttp = document.getElementById("lienHttp");
-  // emplacementHttp.href = "panier.html?id=" + object._id;
-  // console.log(emplacementHttp);
+  getSelectValue();
 }
-
-/* <a id="" href="panier.html?id=${object._id}"> */
