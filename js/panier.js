@@ -8,22 +8,24 @@ const lense = urlParams.get("lenses"); //recupere la lentille
 
 //Appel de l'API
 async function fillProducts() {
-  await fetch("http://localhost:3000/api/cameras/" + product) // Renverra des informations, mais dans un format incorrect
+  await fetch("http://localhost:3000/api/cameras/") // Renverra des informations, mais dans un format incorrect
     .then((response) => response.json()) //Renvoi la reponse en Json
     .then((camera) => panierCameras(camera)) //Appel fonction
     .catch((error) => console.log(error));
 }
 fillProducts();
 
+
+let storage = localStorage.getItem("panier");
+
+
 //Fonction pour afficher dans le panier la caméra choisie
 function panierCameras(object) {
+  let produit = window.localStorage.getItem("product")
+  console.log(produit)
   let img = object.imageUrl;
   let name = object.name;
   let price = object.price;
-  localStorage.setItem("name", JSON.stringify(name));
-  localStorage.setItem("image", JSON.stringify(img));
-  localStorage.setItem("prix", JSON.stringify(price));
-  localStorage.setItem("lense", JSON.stringify(lense));
   let shopCamera = document.querySelector("#monPanier");
   shopCamera.innerHTML += `
         <div id="lignePanier" class="container border-bottom">
@@ -81,5 +83,5 @@ function panierCameras(object) {
     // console.log(key, localStorage.getItem(key));
   }
 }
-localStorage.clear();
+// localStorage.clear();
 // console.log(monStorage)

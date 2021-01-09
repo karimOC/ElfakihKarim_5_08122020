@@ -53,7 +53,19 @@
         </div>
       </nav>
     </header>
-    <section id="choixCameras"></section>
+    <section id="choixCameras">
+      <div id="camera-card" class="card" style="width: 18em;">
+        <img id='imageCamera'></img>
+        <div class="card-body">
+            <h4 id="nomCamera" class="card-title"></h4>
+            <p id="descrCamera" class="card-text"></p>
+            <select id="listLenses" class="custom-select col-8">
+            </select>
+            <strong><p id="prixCamera" class="card-text mt-3"></p></strong>
+            <button onclick="addToCart()" type="button" class=" btn btn-warning mt-3">Ajouter au panier</button>
+        </div>
+    </div>
+    </section>
     <footer class="bg-dark text-center">
       <div
         class="text-center d-flex flex-column flex-md-row justify-content-center p-3"
