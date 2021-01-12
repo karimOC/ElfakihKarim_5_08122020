@@ -47,13 +47,14 @@ function addToCart() {
 
   let storage = window.localStorage.getItem("panier");
   if (storage == null) {
-    storage = {
-      produit: [],
-    };
+    storage = []
+    // storage = {
+    //   produit: [],
+    // };
   } else {
     storage = JSON.parse(storage); //On extrait notre json
   }
-  storage.produit.push({
+  storage.push({
     nom,
     prix,
     lense,
