@@ -1,8 +1,8 @@
 //Paramètre URL
-const queryString = window.location.search; //recupere ladresse entiere
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get("id"); //recupere l'id
-const lense = urlParams.get("lenses"); //recupere la lentille
+// const queryString = window.location.search; //recupere ladresse entiere
+// const urlParams = new URLSearchParams(queryString);
+// const product = urlParams.get("id"); //recupere l'id
+// const lense = urlParams.get("lenses"); //recupere la lentille
 // console.log(product)
 // console.log(lense)
 
@@ -15,54 +15,12 @@ async function fillProducts() {
 }
 fillProducts();
 
-
-let storage = localStorage.getItem("panier");
-
+let storage = window.localStorage.getItem("panier");
 
 //Fonction pour afficher dans le panier la caméra choisie
 function panierCameras(object) {
-  let produit = window.localStorage.getItem("product")
-  console.log(produit)
-  let img = object.imageUrl;
-  let name = object.name;
-  let price = object.price;
-  let shopCamera = document.querySelector("#monPanier");
-  shopCamera.innerHTML += `
-        <div id="lignePanier" class="container border-bottom">
-            <div class="row mb-2">
-                <div class="col-3">
-                    <img src="${img}" class="img-fluid" alt="image de la caméra ${
-    object.name
-  }">
-  <button type="button" class=" btn btn-danger mt-3">x</button>
-
-                </div>
-                <div class="col-6">
-                    <p class="card-text">${name}<br>
-                    ${lense}</p>
-                    <div class="input-group">
-                        <label>Quantité: 
-                            <select id="quantity"">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                <div id="prixCamera" class="col-3 d-flex justify-content-end">
-                </div>
-            </div>
-        </div>
-        <div class="row border-bottom">
-            <div class="col-7">
-            </div>
-            <div class="col-5 d-flex justify-content-end">
-            <p><strong>TOTAL TTC</strong><br>
-            <strong id="totalTTC">${object.price / 100} €</strong></p>
-            </div>
-        </div>
-        `;
+  console.log(JSON.parse(storage));
+  let img = document.getElementById("imageCamera");
 
   document.getElementById("quantity").addEventListener("change", addToPrice);
 

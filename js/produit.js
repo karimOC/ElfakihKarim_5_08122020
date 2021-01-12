@@ -46,7 +46,7 @@ function addToCart() {
   // };
 
   let storage = window.localStorage.getItem("panier");
-  if (!storage) {
+  if (storage == null) {
     storage = {
       produit: [],
     };

@@ -54,7 +54,40 @@
       <div class="col-12">
         <h3>Votre panier</h3>
       </div>
-      <section id="monPanier"></section>
+      <section id="monPanier">
+        <div id="lignePanier" class="container border-bottom">
+          <div class="row mb-2">
+              <div class="col-3">
+                <img id='imageCamera'>img</img>
+<button type="button" class=" btn btn-danger mt-3">x</button>
+              </div>
+              <div class="col-6">
+                  <p id="nomCamera" class="card-text">nom<br>
+                  lense</p>
+                  <div class="input-group">
+                      <label>Quantité: 
+                          <select id="quantity">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                          </select>
+                      </label>
+                  </div>
+              </div>
+              <div id="prixCamera" class="col-3 d-flex justify-content-end">
+                prix
+              </div>
+          </div>
+      </div>
+      <div class="row border-bottom">
+          <div class="col-7">
+          </div>
+          <div class="col-5 d-flex justify-content-end">
+          <p><strong>TOTAL TTC</strong><br>
+          <strong id="totalTTC">prix total</strong></p>
+          </div>
+      </div>
+      </section>
       <div class="col-12">
         <form>
           <div class="form-row mt-5">
