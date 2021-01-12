@@ -21,6 +21,18 @@ nav {
     height: 180px;
   }
 }
+#ligne-panier {
+  // border: 1px solid pink;
+  display: flex;
+  flex-direction: column;
+  img {
+    // border: 1px solid blue;
+    width: 10px;
+  }
+  .prix-camera-panier {
+    font-weight: bold;
+  }
+}
 footer {
   margin-top: 45px;
   font-size: 13px;
