@@ -1,68 +1,76 @@
-//Paramètre URL
-// const queryString = window.location.search; //recupere ladresse entiere
-// const urlParams = new URLSearchParams(queryString);
-// const product = urlParams.get("id"); //recupere l'id
-// const lense = urlParams.get("lenses"); //recupere la lentille
-// console.log(product)
-// console.log(lense)
-
-//Appel de l'API
-// async function fillProducts() {
-//   await fetch("http://localhost:3000/api/cameras/") // Renverra des informations, mais dans un format incorrect
-//     .then((response) => response.json()) //Renvoi la reponse en Json
-//     .then((camera) => panierCameras(camera)) //Appel fonction
-//     .catch((error) => console.log(error));
-// }
-// fillProducts();
-
 let storage = JSON.parse(window.localStorage.getItem("panier"));
+console.log(storage);
 for (let elem of storage) {
-  // Image
-  let img = document.createElement("img");
-  let imgEmplacement = document.getElementById("image-panier");
-  img.src = elem.image;
-  img.className = "w-100";
-  imgEmplacement.appendChild(img);
-  // Boutton supprimer
-  let btn = document.createElement("button");
-  let btnEmplacement = document.getElementById("image-panier");
-  btn.type = "button";
-  btn.className = "btn-xs btn-danger mt-1 mb-3";
-  btn.textContent = "x";
-  btnEmplacement.appendChild(btn);
+  createImage(elem.image);
+  createButton();
   // Nom de la caméra et lense
   let nom = document.createElement("p");
-  let nomEmplacement = document.getElementById("nom-camera");
+  let nomEmplacement = document.getElementById("ligne-panier");
   nom.textContent = elem.nom;
   let lense = document.createElement("p");
-  let lenseEmplacement = document.getElementById("nom-camera");
+  let lenseEmplacement = document.getElementById("ligne-panier");
   lense.textContent = elem.lense;
   nomEmplacement.appendChild(nom);
   lenseEmplacement.appendChild(lense);
   // Quantité
   let select = document.createElement("select");
-  let selectEmplacement = document.getElementById("label-quantité");
-  select.textContent = "Quantité:";
-  select.id = "quantity";
+  let selectEmplacement = document.getElementById("ligne-panier");
+  select.className = "quantity";
   selectEmplacement.appendChild(select);
-  for (i = 1; i < 4; i++) {
-    let option = document.createElement("option");
-    let optionEmplacement = document.getElementById("quantity");
-    option.text = [i];
-    option.value = [i];
-    optionEmplacement.add(option);
-  }
+
   // Prix de la caméra
   let prix = document.createElement("p");
-  let prixEmplacement = document.getElementById("prix-camera");
+  let prixEmplacement = document.getElementById("ligne-panier");
   prixEmplacement.appendChild(prix);
   // Changement du prix en fonction de la quantité
-  document.getElementById("quantity").addEventListener("change", addToPrice);
-  function addToPrice() {
-    var qty = document.getElementById("quantity");
-    prix.textContent = qty.value * elem.prix + " €";
+  let listQuantities = document.getElementsByClassName("quantity");
+  for (let elem of listQuantities) {
+    elem.addEventListener("change", addToPrice);
   }
-  addToPrice();
 }
 
+// Image
+function createImage(src) {
+  let img = document.createElement("img");
+  let imgEmplacement = document.getElementById("ligne-panier");
+  img.src = src;
+  img.className = "w-100";
+  imgEmplacement.appendChild(img);
+}
+// Boutton supprimer
+function createButton() {
+  let btn = document.createElement("button");
+  let btnEmplacement = document.getElementById("ligne-panier");
+  btn.type = "button";
+  btn.className = "btn-xs btn-danger mt-1 mb-3";
+  btn.textContent = "x";
+  btnEmplacement.appendChild(btn);
+}
+// Nom de la caméra et lense
+function createButton() {
+  let btn = document.createElement("button");
+  let btnEmplacement = document.getElementById("ligne-panier");
+  btn.type = "button";
+  btn.className = "btn-xs btn-danger mt-1 mb-3";
+  btn.textContent = "x";
+  btnEmplacement.appendChild(btn);
+}
+
+function addToPrice(prix) {
+  var qty = document.getElementsByClassName("quantity");
+  for (let elem of qty) {
+    prix.textContent = qty.value * elem.prix + " €";
+  }
+}
+
+let optionEmplacement = document.getElementsByClassName("quantity");
+for (i = 1; i < 4; i++) {
+  let option = document.createElement("option");
+  option.text = i;
+  option.value = i;
+  for (let elem of optionEmplacement) {
+    elem.add(option);
+  }
+}
+addToPrice(prix);
 // localStorage.clear();
