@@ -16,7 +16,6 @@
 // fillProducts();
 
 let storage = JSON.parse(window.localStorage.getItem("panier"));
-console.log(storage);
 for (let elem of storage) {
   // Image
   let img = document.createElement("img");
@@ -31,6 +30,15 @@ for (let elem of storage) {
   btn.className = "btn-xs btn-danger mt-1 mb-3";
   btn.textContent = "x";
   btnEmplacement.appendChild(btn);
+  // Nom de la caméra et lense
+  let nom = document.createElement("p");
+  let nomEmplacement = document.getElementById("nom-camera");
+  nom.textContent = elem.nom;
+  let lense = document.createElement("p");
+  let lenseEmplacement = document.getElementById("nom-camera");
+  lense.textContent = elem.lense;
+  nomEmplacement.appendChild(nom);
+  lenseEmplacement.appendChild(lense);
   // Quantité
   let select = document.createElement("select");
   let selectEmplacement = document.getElementById("label-quantité");
@@ -44,34 +52,17 @@ for (let elem of storage) {
     option.value = [i];
     optionEmplacement.add(option);
   }
-  // Nom de la caméra et lense
-  let nom = document.createElement("p");
-  let nomEmplacement = document.getElementById("nom-camera");
-  nom.textContent = elem.nom;
-  let lense = document.createElement("p");
-  let lenseEmplacement = document.getElementById("nom-camera");
-  lense.textContent = elem.lense;
-  nomEmplacement.appendChild(nom);
-  lenseEmplacement.appendChild(lense);
   // Prix de la caméra
   let prix = document.createElement("p");
   let prixEmplacement = document.getElementById("prix-camera");
-  prix.textContent = elem.prix + " €";
   prixEmplacement.appendChild(prix);
-}
-
-//Fonction pour afficher dans le panier la caméra choisie
-// function panierCameras(storage) {
-//   let img = document.getElementById("imageCamera");
-
+  // Changement du prix en fonction de la quantité
   document.getElementById("quantity").addEventListener("change", addToPrice);
-
   function addToPrice() {
-    var x = document.getElementById("quantity");
-    let emplacementPrix = document.getElementById("prixCamera");
-    emplacementPrix.innerHTML =
-      "<small>" + (x.value * storage.prix) / 100 + "€ </small>";
+    var qty = document.getElementById("quantity");
+    prix.textContent = qty.value * elem.prix + " €";
   }
   addToPrice();
-// }
+}
+
 // localStorage.clear();
