@@ -1,11 +1,21 @@
 let storage = JSON.parse(window.localStorage.getItem("panier"));
+// Si le panier est vde
+if (storage === null) {
+  let panierVide = document.createElement("p");
+  let panierVideEmplacement = document.getElementById("panier-vide");
+  panierVide.innerHTML = `<div class="alert alert-danger" role="alert">
+  <h3>Votre panier est vide !</h3>
+  </div>
+  `;
+  panierVideEmplacement.appendChild(panierVide);
+}
+// Boucle avec toute nos fonctions
 for (let elem of storage) {
   createImage(elem.image);
   createName(elem.nom, elem.lense);
   quantityCamera();
   addOption();
   priceCamera(elem.prix);
-  // totalTTC(elem);
 }
 
 // Image
@@ -87,7 +97,10 @@ let prixTTC = 0;
 for (let elem of storage) {
   prixTTC += elem.prix;
 }
+let paragrapheTTC = document.createElement("strong");
+paragrapheTTC.textContent = "TOTAL TTC"
 let ttc = document.createElement("p");
 let ttcEmplacement = document.getElementById("total-ttc");
 ttc.textContent = prixTTC + " €";
+ttcEmplacement.appendChild(paragrapheTTC);
 ttcEmplacement.appendChild(ttc);

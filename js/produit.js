@@ -40,7 +40,7 @@ function addToCart() {
   let lense = document.getElementById("listLenses").value;
   let storage = window.localStorage.getItem("panier");
   if (storage == null) {
-    storage = []
+    storage = [];
   } else {
     storage = JSON.parse(storage); //On extrait notre json
   }
