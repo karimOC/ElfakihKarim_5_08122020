@@ -5,7 +5,7 @@ for (let elem of storage) {
   quantityCamera();
   addOption();
   priceCamera(elem.prix);
-  createButton();
+  // totalTTC(elem);
 }
 
 // Image
@@ -13,28 +13,18 @@ function createImage(src) {
   let img = document.createElement("img");
   let imgEmplacement = document.getElementById("ligne-panier");
   img.src = src;
-  img.className = "w-100";
+  img.className = "mb-3";
   imgEmplacement.appendChild(img);
-}
-
-// Boutton supprimer
-function createButton() {
-  let btn = document.createElement("button");
-  let btnEmplacement = document.getElementById("ligne-panier");
-  btn.type = "button";
-  btn.className = "btn-xs btn-danger mt-1 mb-3";
-  btn.textContent = "x";
-  btnEmplacement.appendChild(btn);
 }
 
 // Nom de la caméra et lense
 function createName(name, lense) {
   let nom = document.createElement("p");
   let nomEmplacement = document.getElementById("ligne-panier");
-  nom.textContent = name;
+  nom.innerHTML = "<h6>" + name + "</h6>";
   let lentille = document.createElement("p");
   let lenseEmplacement = document.getElementById("ligne-panier");
-  lentille.textContent = lense;
+  lentille.innerHTML = "<i>" + lense + "</i>";
   nomEmplacement.appendChild(nom);
   lenseEmplacement.appendChild(lentille);
 }
@@ -70,11 +60,34 @@ function priceCamera(price) {
   // Changement du prix en fonction de la quantité
   let qtyChoose = document.getElementsByClassName("quantity");
   for (let elem of qtyChoose) {
+    // qtyChoose.forEach((elem) => {
     elem.addEventListener("change", function addToPrice() {
-      console.log(elem.value);
+      // console.log(elem[i].value);
     });
   }
 }
 
+// Boutton supprimer
+function createButton() {
+  let btn = document.createElement("button");
+  let btnEmplacement = document.getElementById("btn-supprimer");
+  btn.type = "button";
+  btn.id = "btnSupp";
+  btn.className = "btn btn-danger mst-1 mb-3";
+  btn.textContent = "Vider le panier";
+  btnEmplacement.appendChild(btn);
+  document.getElementById("btnSupp").addEventListener("click", function () {
+    localStorage.clear();
+    document.location.reload();
+  });
+}
+createButton();
 
-// localStorage.clear();
+let prixTTC = 0;
+for (let elem of storage) {
+  prixTTC += elem.prix;
+}
+let ttc = document.createElement("p");
+let ttcEmplacement = document.getElementById("total-ttc");
+ttc.textContent = prixTTC + " €";
+ttcEmplacement.appendChild(ttc);

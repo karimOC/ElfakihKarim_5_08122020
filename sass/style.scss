@@ -22,15 +22,17 @@ nav {
   }
 }
 #ligne-panier {
-  // border: 1px solid pink;
   display: flex;
   flex-direction: column;
   img {
-    // border: 1px solid blue;
-    width: 10px;
+    width: 100px;
   }
   .prix-camera-panier {
     font-weight: bold;
+  }
+  .quantity {
+    width: 40px;
+    margin-bottom: 15px;
   }
 }
 footer {

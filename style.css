@@ -28,10 +28,14 @@ nav .navbar-brand {
   flex-direction: column;
 }
 #ligne-panier img {
-  width: 10px;
+  width: 100px;
 }
 #ligne-panier .prix-camera-panier {
   font-weight: bold;
+}
+#ligne-panier .quantity {
+  width: 40px;
+  margin-bottom: 15px;
 }
 
 footer {

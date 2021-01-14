@@ -38,19 +38,9 @@ function addToCart() {
   let nom = document.getElementById("nomCamera").innerText;
   let prix = parseInt(document.getElementById("prixCamera").innerText);
   let lense = document.getElementById("listLenses").value;
-  // let produit = {
-  //   nom,
-  //   prix,
-  //   lense,
-  //   image: img,
-  // };
-
   let storage = window.localStorage.getItem("panier");
   if (storage == null) {
     storage = []
-    // storage = {
-    //   produit: [],
-    // };
   } else {
     storage = JSON.parse(storage); //On extrait notre json
   }
@@ -63,4 +53,3 @@ function addToCart() {
   window.localStorage.setItem("panier", JSON.stringify(storage));
   alert("Vous avez ajouté " + nom + " " + lense + " à votre panier");
 }
-// window.localStorage.clear()
