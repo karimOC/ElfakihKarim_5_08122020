@@ -8,6 +8,9 @@ if (storage === null) {
   </div>
   `;
   panierVideEmplacement.appendChild(panierVide);
+  // Cacher le formulaire
+  let form = document.getElementById("formulaire");
+  form.style.display = "none";
 }
 // Boucle avec toute nos fonctions
 for (let elem of storage) {
@@ -98,9 +101,26 @@ for (let elem of storage) {
   prixTTC += elem.prix;
 }
 let paragrapheTTC = document.createElement("strong");
-paragrapheTTC.textContent = "TOTAL TTC"
+paragrapheTTC.textContent = "TOTAL TTC";
 let ttc = document.createElement("p");
 let ttcEmplacement = document.getElementById("total-ttc");
 ttc.textContent = prixTTC + " €";
 ttcEmplacement.appendChild(paragrapheTTC);
 ttcEmplacement.appendChild(ttc);
+
+//---------------------------------------------------------------------------
+
+// FORMULAIRE
+
+let form = document.getElementById("formulaire");
+form.addEventListener("click", () => {
+  let name = document.getElementById("name");
+  let firstName = document.getElementById("firstName");
+  let adress = document.getElementById("adress");
+  let city = document.getElementById("city");
+  let email = document.getElementById("email");
+
+  if (name.value == "") {
+    console.log('erreur')
+  }
+});
