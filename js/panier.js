@@ -111,16 +111,93 @@ ttcEmplacement.appendChild(ttc);
 //---------------------------------------------------------------------------
 
 // FORMULAIRE
+let error = document.getElementById("message-erreur");
+error.className = "alert alert-danger mt-2";
+error.innerText = "Veuillez renseigner tout les champs !";
+let formulaire = document.getElementById("formulaire");
+//On recupère nos champs présent dans notre formulaire
+let inputName = document.getElementById("name");
+let firstName = document.getElementById("firstName");
+let adress = document.getElementById("adress");
+let city = document.getElementById("city");
+let email = document.getElementById("email");
 
-let form = document.getElementById("formulaire");
-form.addEventListener("click", () => {
-  let name = document.getElementById("name");
-  let firstName = document.getElementById("firstName");
-  let adress = document.getElementById("adress");
-  let city = document.getElementById("city");
-  let email = document.getElementById("email");
-
-  if (name.value == "") {
-    console.log('erreur')
+function remplirChamps() {
+  let valeurEntreeNom = false;
+  let valeurEntreePrenom = false;
+  let valeurEntreeAdresse = false;
+  let valeurEntreeVille = false;
+  inputName.addEventListener("change", function () {
+    if (
+      //On vérifie si les champs sont vides
+      inputName.value.trim().length > 1
+    ) {
+      // trim() retire les espaces initiaux et finaux
+      valeurEntreeNom = true;
+    }
+  });
+  firstName.addEventListener("change", function () {
+    if (firstName.value.trim().length > 1) {
+      valeurEntreePrenom = true;
+    }
+  });
+  adress.addEventListener("change", function () {
+    if (adress.value.trim().length > 1) {
+      valeurEntreeAdresse = true;
+    }
+  });
+  city.addEventListener("change", function () {
+    if (city.value.trim().length > 1) {
+      valeurEntreeVille = true;
+    }
+  });
+  console.log(valeurEntreeAdresse);
+  if (
+    ((valeurEntreeNom = true),
+    (valeurEntreePrenom = true),
+    (valeurEntreeAdresse = true),
+    (valeurEntreeVille = true))
+  ) {
+    // error.style.display = "none";
   }
+}
+remplirChamps();
+//On vérifie si le mail est correct
+let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+if (regex.exec(email) == null) {
+  //exec() exécute la recherche d'une correspondance sur une chaîne de caractères donnée
+  // error.className = "alert alert-danger mt-2";
+  // error.innerText = "Veuillez entrer un email correct !";
+}
+
+//--------------------------------------------
+formulaire.addEventListener("submit", () => {
+  //Création de l'objet User
+  let users = {
+    client: {
+      nom: inpu$.value.trim(), //trim() supprime les espaces inutiles rajouté par l'utilisateur si il y en a
+      prénom: firstName.value.trim(),
+      adresse: adress.value.trim(),
+      ville: city.value.trim(),
+      email: email.value.trim(),
+    },
+    products: productsTotalId, //Tableau des id des items
+  };
+  //La requête POST
+  fetch("http://localhost:3000/api/cameras/users", {
+    method: "POST", //Methode d'envoi Post
+    headers: new Headers({
+      "Content-Type": "application/json", //L'objet envoyé sera au format JSON
+    }),
+    body: JSON.stringify(users),
+  })
+    .then(async (result_) => {
+      const result = await result_.json(); //On attend le résultat pour exécuter la suite
+      window.localStorage.setItem("Commande", JSON.stringify(result.userId)); //On stocke orderId dans le localStorage pour l'utiliser après
+      window.localStorage.setItem("users", JSON.stringify(users)); //On stock notre order dans localStorage pour l'utiliser après
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  alert(`Votre commande a bien été validé`);
 });
