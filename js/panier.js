@@ -111,57 +111,6 @@ ttcEmplacement.appendChild(ttc);
 //---------------------------------------------------------------------------
 
 // FORMULAIRE
-let error = document.getElementById("message-erreur");
-error.className = "alert alert-danger mt-2";
-error.innerText = "Veuillez renseigner tout les champs !";
-let formulaire = document.getElementById("formulaire");
-//On recupère nos champs présent dans notre formulaire
-let inputName = document.getElementById("name");
-let firstName = document.getElementById("firstName");
-let adress = document.getElementById("adress");
-let city = document.getElementById("city");
-let email = document.getElementById("email");
-
-function remplirChamps() {
-  let valeurEntreeNom = false;
-  let valeurEntreePrenom = false;
-  let valeurEntreeAdresse = false;
-  let valeurEntreeVille = false;
-  inputName.addEventListener("change", function () {
-    if (
-      //On vérifie si les champs sont vides
-      inputName.value.trim().length > 1
-    ) {
-      // trim() retire les espaces initiaux et finaux
-      valeurEntreeNom = true;
-    }
-  });
-  firstName.addEventListener("change", function () {
-    if (firstName.value.trim().length > 1) {
-      valeurEntreePrenom = true;
-    }
-  });
-  adress.addEventListener("change", function () {
-    if (adress.value.trim().length > 1) {
-      valeurEntreeAdresse = true;
-    }
-  });
-  city.addEventListener("change", function () {
-    if (city.value.trim().length > 1) {
-      valeurEntreeVille = true;
-    }
-  });
-  console.log(valeurEntreeAdresse);
-  if (
-    ((valeurEntreeNom = true),
-    (valeurEntreePrenom = true),
-    (valeurEntreeAdresse = true),
-    (valeurEntreeVille = true))
-  ) {
-    // error.style.display = "none";
-  }
-}
-remplirChamps();
 //On vérifie si le mail est correct
 let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 if (regex.exec(email) == null) {
@@ -175,7 +124,7 @@ formulaire.addEventListener("submit", () => {
   //Création de l'objet User
   let users = {
     client: {
-      nom: inpu$.value.trim(), //trim() supprime les espaces inutiles rajouté par l'utilisateur si il y en a
+      nom: inputName.value.trim(), //trim() supprime les espaces inutiles rajouté par l'utilisateur si il y en a
       prénom: firstName.value.trim(),
       adresse: adress.value.trim(),
       ville: city.value.trim(),
@@ -201,3 +150,35 @@ formulaire.addEventListener("submit", () => {
     });
   alert(`Votre commande a bien été validé`);
 });
+
+function validation() {
+  let inputName = document.getElementById("name").value;
+  let firstName = document.getElementById("firstName").value;
+  let adress = document.getElementById("adress").value;
+  let city = document.getElementById("city").value;
+  let email = document.getElementById("email").value;
+  let error = document.getElementById("message-erreur");
+  error.className = "alert alert-danger mt-2";
+  if (inputName.trim().length < 3) {
+    //trim() permet de supprimer les espaces ajouté
+    error.innerText = "Veuillez renseigner un nom correct !";
+    return false;
+  }
+  if (firstName.trim().length < 3) {
+    error.innerText = "Veuillez renseigner un prénom correct !";
+    return false;
+  }
+  if (adress.trim().length < 5) {
+    error.innerText = "Veuillez renseigner une adresse correct !";
+    return false;
+  }
+  if (city.trim().length < 2) {
+    error.innerText = "Veuillez renseigner une ville correct !";
+    return false;
+  }
+  let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+  if (regex.exec(email) == null) {
+    error.innerText = "Veuillez renseigner un mail correct !";
+    return false;
+  }
+}
