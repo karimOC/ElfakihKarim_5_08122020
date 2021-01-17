@@ -109,12 +109,42 @@ ttcEmplacement.appendChild(paragrapheTTC);
 ttcEmplacement.appendChild(ttc);
 
 //---------------------------------------------------------------------------
-
 // FORMULAIRE
-//On vérifie si le mail est correct
+function validation() {
+  let inputName = document.getElementById("name").value;
+  let firstName = document.getElementById("firstName").value;
+  let adress = document.getElementById("adress").value;
+  let city = document.getElementById("city").value;
+  let email = document.getElementById("email").value;
+  let error = document.getElementById("message-erreur");
+  error.className = "alert alert-danger mt-2";
+  if (inputName.trim().length < 3) {
+    //trim() permet de supprimer les espaces ajouté
+    error.innerText = "Veuillez renseigner un nom correct !";
+    return false;
+  }
+  if (firstName.trim().length < 3) {
+    error.innerText = "Veuillez renseigner un prénom correct !";
+    return false;
+  }
+  if (adress.trim().length < 5) {
+    error.innerText = "Veuillez renseigner une adresse correct !";
+    return false;
+  }
+  if (city.trim().length < 2) {
+    error.innerText = "Veuillez renseigner une ville correct !";
+    return false;
+  }
+  //On vérifie si le mail est correct
+  let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+  //exec() exécute la recherche d'une correspondance sur une chaîne de caractères donnée
+  if (regex.exec(email) == null) {
+    error.innerText = "Veuillez renseigner un mail correct !";
+    return false;
+  }
+}
 let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 if (regex.exec(email) == null) {
-  //exec() exécute la recherche d'une correspondance sur une chaîne de caractères donnée
   // error.className = "alert alert-danger mt-2";
   // error.innerText = "Veuillez entrer un email correct !";
 }
@@ -148,37 +178,5 @@ formulaire.addEventListener("submit", () => {
     .catch((error) => {
       console.log(error);
     });
-  alert(`Votre commande a bien été validé`);
+  alert("Votre commande a bien été validé");
 });
-
-function validation() {
-  let inputName = document.getElementById("name").value;
-  let firstName = document.getElementById("firstName").value;
-  let adress = document.getElementById("adress").value;
-  let city = document.getElementById("city").value;
-  let email = document.getElementById("email").value;
-  let error = document.getElementById("message-erreur");
-  error.className = "alert alert-danger mt-2";
-  if (inputName.trim().length < 3) {
-    //trim() permet de supprimer les espaces ajouté
-    error.innerText = "Veuillez renseigner un nom correct !";
-    return false;
-  }
-  if (firstName.trim().length < 3) {
-    error.innerText = "Veuillez renseigner un prénom correct !";
-    return false;
-  }
-  if (adress.trim().length < 5) {
-    error.innerText = "Veuillez renseigner une adresse correct !";
-    return false;
-  }
-  if (city.trim().length < 2) {
-    error.innerText = "Veuillez renseigner une ville correct !";
-    return false;
-  }
-  let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-  if (regex.exec(email) == null) {
-    error.innerText = "Veuillez renseigner un mail correct !";
-    return false;
-  }
-}
