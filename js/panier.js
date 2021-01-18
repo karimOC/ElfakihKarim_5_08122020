@@ -1,5 +1,5 @@
 let storage = JSON.parse(window.localStorage.getItem("panier"));
-// Si le panier est vde
+// Si le panier est vide
 if (storage === null) {
   let panierVide = document.createElement("p");
   let panierVideEmplacement = document.getElementById("panier-vide");
@@ -16,8 +16,8 @@ if (storage === null) {
 for (let elem of storage) {
   createImage(elem.image);
   createName(elem.nom, elem.lense);
-  quantityCamera();
-  addOption();
+  // quantityCamera();
+  // addOption();
   priceCamera(elem.prix);
 }
 
@@ -43,25 +43,25 @@ function createName(name, lense) {
 }
 
 // Creation du <select> pour la quantité
-function quantityCamera() {
-  let select = document.createElement("select");
-  let selectEmplacement = document.getElementById("ligne-panier");
-  select.className = "quantity";
-  selectEmplacement.appendChild(select);
-}
+// function quantityCamera() {
+//   let select = document.createElement("select");
+//   let selectEmplacement = document.getElementById("ligne-panier");
+//   select.className = "quantity";
+//   selectEmplacement.appendChild(select);
+// }
 
-// Ajouter les <option> au <select>
-function addOption() {
-  let optionEmplacement = document.getElementsByClassName("quantity");
-  for (let i = 1; i < 4; i++) {
-    let option = document.createElement("option");
-    option.text = i;
-    option.value = i;
-    for (let elem of optionEmplacement) {
-      elem.add(option);
-    }
-  }
-}
+// // Ajouter les <option> au <select>
+// function addOption() {
+//   let optionEmplacement = document.getElementsByClassName("quantity");
+//   for (let i = 1; i < 4; i++) {
+//     let option = document.createElement("option");
+//     option.text = i;
+//     option.value = i;
+//     for (let elem of optionEmplacement) {
+//       elem.add(option);
+//     }
+//   }
+// }
 
 // Prix de la caméra
 function priceCamera(price) {
@@ -103,14 +103,16 @@ for (let elem of storage) {
 let paragrapheTTC = document.createElement("strong");
 paragrapheTTC.textContent = "TOTAL TTC";
 let ttc = document.createElement("p");
+let textTtcEmplacement = document.getElementById("text-ttc");
 let ttcEmplacement = document.getElementById("total-ttc");
 ttc.textContent = prixTTC + " €";
-ttcEmplacement.appendChild(paragrapheTTC);
+textTtcEmplacement.appendChild(paragrapheTTC);
 ttcEmplacement.appendChild(ttc);
 
 //---------------------------------------------------------------------------
 // FORMULAIRE
 function validation() {
+  // -----------------------VALIDATION FORM----------------------------------
   let inputName = document.getElementById("name").value;
   let firstName = document.getElementById("firstName").value;
   let adress = document.getElementById("adress").value;
@@ -136,47 +138,81 @@ function validation() {
     return false;
   }
   //On vérifie si le mail est correct
-  let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+  let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
   //exec() exécute la recherche d'une correspondance sur une chaîne de caractères donnée
-  if (regex.exec(email) == null) {
+  if (email.match(regex)) {
+  } else {
     error.innerText = "Veuillez renseigner un mail correct !";
     return false;
   }
-}
-let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-if (regex.exec(email) == null) {
-  // error.className = "alert alert-danger mt-2";
-  // error.innerText = "Veuillez entrer un email correct !";
-}
-
-//--------------------------------------------
-formulaire.addEventListener("submit", () => {
+  // ---------------------LOCAL STORAGE CLIENTS ET COMMANDE-------------------
+  // On récupère notre storage pour les clients
+  // let storageClients = window.localStorage.getItem("clients");
+  // if (storageClients == null) {
+  //   storageClients = [];
+  // } else {
+  //   storageClients = JSON.parse(storageClients); //On extrait notre json
+  // }
+  // On récupère le prix total et les produits de la commande
+  let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
   //Création de l'objet User
-  let users = {
-    client: {
-      nom: inputName.value.trim(), //trim() supprime les espaces inutiles rajouté par l'utilisateur si il y en a
-      prénom: firstName.value.trim(),
-      adresse: adress.value.trim(),
-      ville: city.value.trim(),
-      email: email.value.trim(),
+  let order = {
+    contact: {
+      firstName: firstName,
+      lastName: inputName,
+      address: adress,
+      city: city,
+      email: email,
     },
-    products: productsTotalId, //Tableau des id des items
+    products: ["5be9c8541c9d440000665243"],
   };
+  //     Prenom: firstName,
+  // let command = [];
+  // for (let elem of storage) {
+  //   command = {
+  //     Nom: inputName,
+  //     Prenom: firstName,
+  //     PrixTTC: prixTTC
+  //   };
+  // }
+  // alert(JSON.stringify(order));
+  // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
-  fetch("http://localhost:3000/api/cameras/users", {
-    method: "POST", //Methode d'envoi Post
-    headers: new Headers({
-      "Content-Type": "application/json", //L'objet envoyé sera au format JSON
+  fetch("http://localhost:3000/api/cameras/order", {
+    method: "POST", //Methode d'envoi
+    body: JSON.stringify({
+      firstName: firstName,
+      lastName: inputName,
+      address: adress,
+      city: city,
+      email: email,
     }),
-    body: JSON.stringify(users),
-  })
-    .then(async (result_) => {
-      const result = await result_.json(); //On attend le résultat pour exécuter la suite
-      window.localStorage.setItem("Commande", JSON.stringify(result.userId)); //On stocke orderId dans le localStorage pour l'utiliser après
-      window.localStorage.setItem("users", JSON.stringify(users)); //On stock notre order dans localStorage pour l'utiliser après
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    headers: {
+      "Content-Type": "application/json",
+    }
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      }),
+  });
+  // window.localStorage.setItem("clients", JSON.stringify(storageClients)); //On stock notre Utilsateur dans localStorage
+
+  // fetch("http://localhost:3000/api/cameras/order", {
+  //   method: "POST", //Methode d'envoi Post
+  //   headers: new Headers({
+  //     "Content-Type": "application/json", //L'objet envoyé sera au format JSON
+  //   }),
+  //   body: JSON.stringify(order),
+  // })
+  //   .then(async (result_) => {
+  //     const result = await result_.json(); //On attend le résultat pour exécuter la suite
+  //     // window.localStorage.setItem("Commande", JSON.stringify(storage)); //On stocke orderId dans le localStorage
+  //     // window.localStorage.setItem("clients", JSON.stringify(storageClients)); //On stock notre Utilsateur dans localStorage
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   alert("Votre commande a bien été validé");
-});
+}
