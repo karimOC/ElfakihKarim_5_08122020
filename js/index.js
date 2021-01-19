@@ -1,13 +1,13 @@
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras") // Renverra des informations, mais dans un format incorrect
-  .then(response => response.json()) //Renvoi la reponse en Json
-  .then((cameras) => homeCameras(cameras)) //Appel fonction
-  .catch(error => console.log(error));
-  }
+    .then((response) => response.json()) //Renvoi la reponse en Json
+    .then((cameras) => homeCameras(cameras)) //Appel fonction
+    .catch((error) => console.log(error));
+}
 fillProducts();
 
-//Fonction pour afficher la liste de toutes les caméras disponible 
+//Fonction pour afficher la liste de toutes les caméras disponible
 function homeCameras(array) {
   let lesCameras = document.querySelector("#listCameras");
   for (let elem of array) {

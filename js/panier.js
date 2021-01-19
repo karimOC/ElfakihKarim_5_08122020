@@ -111,16 +111,16 @@ ttcEmplacement.appendChild(ttc);
 
 //---------------------------------------------------------------------------
 // FORMULAIRE
-function validation() {
+async function validation() {
   // -----------------------VALIDATION FORM----------------------------------
-  let inputName = document.getElementById("name").value;
+  let lastName = document.getElementById("lastName").value;
   let firstName = document.getElementById("firstName").value;
-  let adress = document.getElementById("adress").value;
+  let address = document.getElementById("address").value;
   let city = document.getElementById("city").value;
   let email = document.getElementById("email").value;
   let error = document.getElementById("message-erreur");
   error.className = "alert alert-danger mt-2";
-  if (inputName.trim().length < 3) {
+  if (lastName.trim().length < 3) {
     //trim() permet de supprimer les espaces ajouté
     error.innerText = "Veuillez renseigner un nom correct !";
     return false;
@@ -129,7 +129,7 @@ function validation() {
     error.innerText = "Veuillez renseigner un prénom correct !";
     return false;
   }
-  if (adress.trim().length < 5) {
+  if (address.trim().length < 5) {
     error.innerText = "Veuillez renseigner une adresse correct !";
     return false;
   }
@@ -159,31 +159,38 @@ function validation() {
   //Création de l'objet User
   let order = {
     contact: {
-      firstName: firstName.trim(),
-      lastName: inputName.trim(),
-      address: adress.trim(),
-      city: city.trim(),
-      email: email.trim(),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      address: address,
+      city: city,
     },
-    products: ["5be9c8541c9d440000665243"],
+    products: ["5be1ed3f1c9d44000030b061"],
   };
+  // let orderStringified = JSON.stringify(order)
   // alert(JSON.stringify(order));
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
-  fetch("http://localhost:3000/api/cameras/order", {
+  await fetch("http://localhost:3000/api/cameras/order", {
     method: "POST", //Methode d'envoi
     body: JSON.stringify(order),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
   })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  alert(JSON.stringify(order));
-  window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre Utilsateur dans localStorage
+    .then((response) => response.json()) //Renvoi la reponse en Json
+    .then((result) => console.log(result)) //On récupère 
+    .catch((error) => console.log(error));
+  // .then((response) => {
+  //   console.log(response);
+  //   response.json();
+  // })
+  // .then((result) => {
+  //   console.log(result);
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
+  window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
   alert("Votre commande a bien été validé");
 }
