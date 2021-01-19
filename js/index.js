@@ -2,7 +2,7 @@
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras") // Renverra des informations, mais dans un format incorrect
     .then((response) => response.json()) //Renvoi la reponse en Json
-    .then((cameras) => homeCameras(cameras)) //Appel fonction
+    .then((cameras) => homeCameras(cameras)) //On récupère la réponse de la ligne précédente
     .catch((error) => console.log(error));
 }
 fillProducts();

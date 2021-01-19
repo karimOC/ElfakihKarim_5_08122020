@@ -111,7 +111,9 @@ ttcEmplacement.appendChild(ttc);
 
 //---------------------------------------------------------------------------
 // FORMULAIRE
-async function validation() {
+let btnCmd = document.getElementById("btn-commander");
+btnCmd.addEventListener("click", async function (e) {
+  e.preventDefault(); //L'empêche de soumettre le formulaire
   // -----------------------VALIDATION FORM----------------------------------
   let lastName = document.getElementById("lastName").value;
   let firstName = document.getElementById("firstName").value;
@@ -121,7 +123,7 @@ async function validation() {
   let error = document.getElementById("message-erreur");
   error.className = "alert alert-danger mt-2";
   if (lastName.trim().length < 3) {
-    //trim() permet de supprimer les espaces ajouté
+    //trim() permet de retirer les blancs en début et fin de chaîne
     error.innerText = "Veuillez renseigner un nom correct !";
     return false;
   }
@@ -168,29 +170,19 @@ async function validation() {
     products: ["5be1ed3f1c9d44000030b061"],
   };
   // let orderStringified = JSON.stringify(order)
-  // alert(JSON.stringify(order));
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
+  console.log(JSON.stringify(order));
   await fetch("http://localhost:3000/api/cameras/order", {
     method: "POST", //Methode d'envoi
     body: JSON.stringify(order),
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
     .then((response) => response.json()) //Renvoi la reponse en Json
-    .then((result) => console.log(result)) //On récupère 
+    .then((result) => console.log(result)) //On récupère
     .catch((error) => console.log(error));
-  // .then((response) => {
-  //   console.log(response);
-  //   response.json();
-  // })
-  // .then((result) => {
-  //   console.log(result);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
   window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
   alert("Votre commande a bien été validé");
-}
+});
