@@ -154,65 +154,36 @@ function validation() {
   //   storageClients = JSON.parse(storageClients); //On extrait notre json
   // }
   // On récupère le prix total et les produits de la commande
+  window.localStorage.getItem("prix-total");
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
   //Création de l'objet User
   let order = {
     contact: {
-      firstName: firstName,
-      lastName: inputName,
-      address: adress,
-      city: city,
-      email: email,
+      firstName: firstName.trim(),
+      lastName: inputName.trim(),
+      address: adress.trim(),
+      city: city.trim(),
+      email: email.trim(),
     },
     products: ["5be9c8541c9d440000665243"],
   };
-  //     Prenom: firstName,
-  // let command = [];
-  // for (let elem of storage) {
-  //   command = {
-  //     Nom: inputName,
-  //     Prenom: firstName,
-  //     PrixTTC: prixTTC
-  //   };
-  // }
   // alert(JSON.stringify(order));
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   fetch("http://localhost:3000/api/cameras/order", {
     method: "POST", //Methode d'envoi
-    body: JSON.stringify({
-      firstName: firstName,
-      lastName: inputName,
-      address: adress,
-      city: city,
-      email: email,
-    }),
+    body: JSON.stringify(order),
     headers: {
       "Content-Type": "application/json",
-    }
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      }),
-  });
-  // window.localStorage.setItem("clients", JSON.stringify(storageClients)); //On stock notre Utilsateur dans localStorage
-
-  // fetch("http://localhost:3000/api/cameras/order", {
-  //   method: "POST", //Methode d'envoi Post
-  //   headers: new Headers({
-  //     "Content-Type": "application/json", //L'objet envoyé sera au format JSON
-  //   }),
-  //   body: JSON.stringify(order),
-  // })
-  //   .then(async (result_) => {
-  //     const result = await result_.json(); //On attend le résultat pour exécuter la suite
-  //     // window.localStorage.setItem("Commande", JSON.stringify(storage)); //On stocke orderId dans le localStorage
-  //     // window.localStorage.setItem("clients", JSON.stringify(storageClients)); //On stock notre Utilsateur dans localStorage
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  alert(JSON.stringify(order));
+  window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre Utilsateur dans localStorage
   alert("Votre commande a bien été validé");
 }
