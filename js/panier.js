@@ -42,27 +42,6 @@ function createName(name, lense) {
   lenseEmplacement.appendChild(lentille);
 }
 
-// Creation du <select> pour la quantité
-// function quantityCamera() {
-//   let select = document.createElement("select");
-//   let selectEmplacement = document.getElementById("ligne-panier");
-//   select.className = "quantity";
-//   selectEmplacement.appendChild(select);
-// }
-
-// // Ajouter les <option> au <select>
-// function addOption() {
-//   let optionEmplacement = document.getElementsByClassName("quantity");
-//   for (let i = 1; i < 4; i++) {
-//     let option = document.createElement("option");
-//     option.text = i;
-//     option.value = i;
-//     for (let elem of optionEmplacement) {
-//       elem.add(option);
-//     }
-//   }
-// }
-
 // Prix de la caméra
 function priceCamera(price) {
   let prix = document.createElement("p");
@@ -156,7 +135,7 @@ btnCmd.addEventListener("click", async function (e) {
   //   storageClients = JSON.parse(storageClients); //On extrait notre json
   // }
   // On récupère le prix total et les produits de la commande
-  window.localStorage.getItem("prix-total");
+  window.localStorage.getItem("prix-Id");
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
   //Création de l'objet User
   let order = {
@@ -169,10 +148,9 @@ btnCmd.addEventListener("click", async function (e) {
     },
     products: ["5be1ed3f1c9d44000030b061"],
   };
-  // let orderStringified = JSON.stringify(order)
+  window.localStorage.getItem("prix-total");
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
-  console.log(JSON.stringify(order));
   await fetch("http://localhost:3000/api/cameras/order", {
     method: "POST", //Methode d'envoi
     body: JSON.stringify(order),
@@ -181,8 +159,13 @@ btnCmd.addEventListener("click", async function (e) {
     },
   })
     .then((response) => response.json()) //Renvoi la reponse en Json
-    .then((result) => console.log(result)) //On récupère
-    .catch((error) => console.log(error));
+    // .then((result) => console.log(result.orderId)) //On récupère la réponse de la ligne précédente
+    .then(
+      (result) =>
+        (window.location.href =
+          "./confirmationCmd.html?orderId=" + result.orderId)
+    )
+    .catch((error) => error);
   window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
   alert("Votre commande a bien été validé");
 });

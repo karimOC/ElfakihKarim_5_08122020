@@ -1,5 +1,5 @@
 //Paramètre URL
-const queryString = window.location.search; //recupere ladresse entiere
+const queryString = window.location.search; //recupere l'adresse entiere
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get("id"); //recupere l'id
 
