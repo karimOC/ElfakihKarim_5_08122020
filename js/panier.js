@@ -16,8 +16,6 @@ if (storage === null) {
 for (let elem of storage) {
   createImage(elem.image);
   createName(elem.nom, elem.lense);
-  // quantityCamera();
-  // addOption();
   priceCamera(elem.prix);
 }
 
@@ -126,14 +124,6 @@ btnCmd.addEventListener("click", async function (e) {
     error.innerText = "Veuillez renseigner un mail correct !";
     return false;
   }
-  // ---------------------LOCAL STORAGE CLIENTS ET COMMANDE-------------------
-  // On récupère notre storage pour les clients
-  // let storageClients = window.localStorage.getItem("clients");
-  // if (storageClients == null) {
-  //   storageClients = [];
-  // } else {
-  //   storageClients = JSON.parse(storageClients); //On extrait notre json
-  // }
   // On récupère le prix total et les produits de la commande
   window.localStorage.getItem("prix-Id");
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
@@ -159,7 +149,6 @@ btnCmd.addEventListener("click", async function (e) {
     },
   })
     .then((response) => response.json()) //Renvoi la reponse en Json
-    // .then((result) => console.log(result.orderId)) //On récupère la réponse de la ligne précédente
     .then(
       (result) =>
         (window.location.href =
@@ -167,5 +156,4 @@ btnCmd.addEventListener("click", async function (e) {
     )
     .catch((error) => error);
   window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
-  // alert("Votre commande a bien été validé");
 });
