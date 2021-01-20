@@ -167,5 +167,5 @@ btnCmd.addEventListener("click", async function (e) {
     )
     .catch((error) => error);
   window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
-  alert("Votre commande a bien été validé");
+  // alert("Votre commande a bien été validé");
 });

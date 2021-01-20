@@ -14,7 +14,6 @@ idText.innerHTML =
   " €</strong>";
 
 let lienAccueil = document.getElementById("lien-accueil");
-console.log(lienAccueil);
 lienAccueil.addEventListener("click", function () {
   localStorage.clear();
 });
