@@ -1,20 +1,20 @@
 //Paramètre URL
-const queryString = window.location.search; //recupere l'adresse entiere
+const queryString = window.location.search; // Récupère l'adresse entière
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get("id"); //recupere l'id
+const id = urlParams.get("id"); // Récupère l'id de la caméra choisie
 
 //Appel de l'API
 async function fillProducts() {
   await fetch("http://localhost:3000/api/cameras/" + id) // Renverra des informations, mais dans un format incorrect
-    .then((response) => response.json()) //Renvoi la reponse en Json
-    .then((camera) => idCamera(camera)) //Appel fonction
-    .catch((error) => console.log(error));
+    .then((response) => response.json()) // Renvoi la reponse en Json
+    .then((camera) => idCamera(camera)) // Appel fonction
+    .catch((error) => console.log(error)); // Ne traite que le cas où la promesse est rejetée
 }
 fillProducts();
 
 //Fonction pour afficher la caméra séléctionné
 function idCamera(object) {
-  // ON créé le HTML de la caméra sélectionné dans la page Produit.html
+  // On créé le HTML de la caméra sélectionné dans la page Produit.html
   let img = document.getElementById("imageCamera");
   img.src = object.imageUrl;
   let titre = document.getElementById("nomCamera");

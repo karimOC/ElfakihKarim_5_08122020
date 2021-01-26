@@ -142,18 +142,18 @@ btnCmd.addEventListener("click", async function (e) {
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   await fetch("http://localhost:3000/api/cameras/order", {
-    method: "POST", //Methode d'envoi
-    body: JSON.stringify(order),
+    method: "POST", // Methode d'envoi
+    body: JSON.stringify(order), // Ce qu'on écrit dans le corps de la requête
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", // Format
     },
   })
-    .then((response) => response.json()) //Renvoi la reponse en Json
+    .then((response) => response.json()) // Renvoi la reponse en Json
     .then(
       (result) =>
         (window.location.href =
           "./confirmationCmd.html?orderId=" + result.orderId)
     )
     .catch((error) => error);
-  window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); //On stock notre prix total dans localStorage
+  window.localStorage.setItem("prix-total", JSON.stringify(prixTTC)); // On stock notre prix total dans localStorage
 });
