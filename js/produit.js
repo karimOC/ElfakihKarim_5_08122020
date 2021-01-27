@@ -24,7 +24,7 @@ function idCamera(object) {
   let prix = document.getElementById("prixCamera");
   prix.innerText = object.price / 100 + " €";
   // On affiche ici les lentilles dans le <select> en fonction de la caméra choisie
-  for (elem of object.lenses) {
+  for (let elem of object.lenses) {
     let option = document.createElement("option");
     let emplacementSelect = document.getElementById("listLenses");
     option.text = elem;
@@ -39,10 +39,13 @@ function addToCart() {
   let prix = parseInt(document.getElementById("prixCamera").innerText);
   let lense = document.getElementById("listLenses").value;
   let storage = window.localStorage.getItem("panier");
+  let storageId = window.localStorage.getItem("les-id");
   if (storage == null) {
     storage = [];
+    storageId = [];
   } else {
-    storage = JSON.parse(storage); //On extrait notre json
+    storage = JSON.parse(storage); //On extrait notre json sans les ""
+    storageId = JSON.parse(storageId); //On extrait notre json sans les ""
   }
   storage.push({
     nom,
@@ -50,6 +53,10 @@ function addToCart() {
     lense,
     image: img,
   });
+  storageId.push({
+    id,
+  });
   window.localStorage.setItem("panier", JSON.stringify(storage));
+  window.localStorage.setItem("les-id", JSON.stringify(storageId));
   alert("Vous avez ajouté " + nom + " " + lense + " à votre panier");
 }

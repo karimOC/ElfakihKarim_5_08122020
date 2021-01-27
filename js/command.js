@@ -4,7 +4,7 @@ const urlParams = new URLSearchParams(queryString);
 const orderId = urlParams.get("orderId"); // Récupère l'id
 //On récupère le prix total
 let storage = window.localStorage.getItem("prix-total");
-// On affiche le numéro Id dans le Html
+// On affiche le numéro Id et le prix dans le Html
 let idText = document.getElementById("num-commande");
 idText.innerHTML =
   "<u>Numéro de commande</u>: <strong>" +

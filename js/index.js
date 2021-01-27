@@ -5,7 +5,7 @@ async function fillProducts() {
     .then((cameras) => homeCameras(cameras)) // On récupère la réponse de la ligne précédente
     .catch((error) => console.log(error)); // Ne traite que le cas où la promesse est rejetée
 }
-fillProducts();
+fillProducts(); // On appel la fonction
 
 //Fonction pour afficher la liste de toutes les caméras disponible
 function homeCameras(array) {

@@ -1,4 +1,6 @@
 let storage = JSON.parse(window.localStorage.getItem("panier"));
+let storageId = JSON.parse(window.localStorage.getItem("les-id"));
+console.log(storageId);
 // Si le panier est vide
 if (storage === null) {
   let panierVide = document.createElement("p");
@@ -47,14 +49,6 @@ function priceCamera(price) {
   prix.textContent = "Prix: " + price + " €";
   prix.className = "prix-camera-panier";
   prixEmplacement.appendChild(prix);
-  // Changement du prix en fonction de la quantité
-  let qtyChoose = document.getElementsByClassName("quantity");
-  for (let elem of qtyChoose) {
-    // qtyChoose.forEach((elem) => {
-    elem.addEventListener("change", function addToPrice() {
-      // console.log(elem[i].value);
-    });
-  }
 }
 
 // Boutton supprimer
@@ -99,34 +93,43 @@ btnCmd.addEventListener("click", async function (e) {
   let email = document.getElementById("email").value;
   let error = document.getElementById("message-erreur");
   error.className = "alert alert-danger mt-2";
-  if (lastName.trim().length < 3) {
-    //trim() permet de retirer les blancs en début et fin de chaîne
+  let regexName = /^[a-zA-Z]{3,}$/;
+  if (lastName.match(regexName)) {
+  } else {
     error.innerText = "Veuillez renseigner un nom correct !";
     return false;
   }
-  if (firstName.trim().length < 3) {
+  if (firstName.match(regexName)) {
+  } else {
     error.innerText = "Veuillez renseigner un prénom correct !";
     return false;
   }
-  if (address.trim().length < 5) {
-    error.innerText = "Veuillez renseigner une adresse correct !";
+  let regexAdresse = "[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+"
+
+  if (address.match(regexAdresse)) {
+  } else {
+    error.innerText = "Veuillez renseigner une adresse correcte !";
     return false;
   }
-  if (city.trim().length < 2) {
-    error.innerText = "Veuillez renseigner une ville correct !";
+  if (city.match(regexName)) {
+  } else {
+    error.innerText = "Veuillez renseigner une ville correcte !";
     return false;
   }
   //On vérifie si le mail est correct
   let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-  //exec() exécute la recherche d'une correspondance sur une chaîne de caractères donnée
   if (email.match(regex)) {
   } else {
     error.innerText = "Veuillez renseigner un mail correct !";
     return false;
   }
   // On récupère le prix total et les produits de la commande
-  window.localStorage.getItem("prix-Id");
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
+  // On récupère tous nos id du panier
+  window.localStorage.getItem("idProducts");
+  for (let elem of storage) {
+    console.log(elem.id);
+  }
   //Création de l'objet User
   let order = {
     contact: {
@@ -136,19 +139,19 @@ btnCmd.addEventListener("click", async function (e) {
       address: address,
       city: city,
     },
-    products: ["5be1ed3f1c9d44000030b061"],
+    products: [storageId],
   };
   window.localStorage.getItem("prix-total");
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   await fetch("http://localhost:3000/api/cameras/order", {
-    method: "POST", // Methode d'envoi
+    method: "POST", // Méthode d'envoi
     body: JSON.stringify(order), // Ce qu'on écrit dans le corps de la requête
     headers: {
       "Content-Type": "application/json", // Format
     },
   })
-    .then((response) => response.json()) // Renvoi la reponse en Json
+    .then((response) => response.json()) // Renvoi la réponse en Json
     .then(
       (result) =>
         (window.location.href =
