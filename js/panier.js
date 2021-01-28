@@ -1,6 +1,5 @@
 let storage = JSON.parse(window.localStorage.getItem("panier"));
 let storageId = JSON.parse(window.localStorage.getItem("les-id"));
-console.log(storageId);
 // Si le panier est vide
 if (storage === null) {
   let panierVide = document.createElement("p");
@@ -126,10 +125,7 @@ btnCmd.addEventListener("click", async function (e) {
   // On récupère le prix total et les produits de la commande
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
   // On récupère tous nos id du panier
-  window.localStorage.getItem("idProducts");
-  for (let elem of storage) {
-    console.log(elem.id);
-  }
+  // window.localStorage.getItem("idProducts");
   //Création de l'objet User
   let order = {
     contact: {
@@ -139,9 +135,10 @@ btnCmd.addEventListener("click", async function (e) {
       address: address,
       city: city,
     },
-    products: [storageId],
+    products: storageId,
   };
   window.localStorage.getItem("prix-total");
+  alert(JSON.stringify(order))
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   await fetch("http://localhost:3000/api/cameras/order", {
