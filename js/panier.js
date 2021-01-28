@@ -103,8 +103,7 @@ btnCmd.addEventListener("click", async function (e) {
     error.innerText = "Veuillez renseigner un prénom correct !";
     return false;
   }
-  let regexAdresse = "[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+"
-
+  let regexAdresse = "[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+";
   if (address.match(regexAdresse)) {
   } else {
     error.innerText = "Veuillez renseigner une adresse correcte !";
@@ -124,8 +123,6 @@ btnCmd.addEventListener("click", async function (e) {
   }
   // On récupère le prix total et les produits de la commande
   let prixTTC = parseInt(document.getElementById("total-ttc").innerText);
-  // On récupère tous nos id du panier
-  // window.localStorage.getItem("idProducts");
   //Création de l'objet User
   let order = {
     contact: {
@@ -138,7 +135,7 @@ btnCmd.addEventListener("click", async function (e) {
     products: storageId,
   };
   window.localStorage.getItem("prix-total");
-  alert(JSON.stringify(order))
+  alert(JSON.stringify(order));
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   await fetch("http://localhost:3000/api/cameras/order", {
