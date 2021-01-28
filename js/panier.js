@@ -135,7 +135,6 @@ btnCmd.addEventListener("click", async function (e) {
     products: storageId,
   };
   window.localStorage.getItem("prix-total");
-  alert(JSON.stringify(order));
   // ---------------------REQUETE POST VERS LA BASE DE DONNEE-------------------
   //La requête POST
   await fetch("http://localhost:3000/api/cameras/order", {
